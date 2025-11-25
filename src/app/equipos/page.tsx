@@ -20,7 +20,9 @@ const mapTeamResponseToTeam = (teamResponse: TeamShowDto): Team => ({
     id: idx.toString(),
     name: student.nameUser,
     email: student.email
-  }))
+  })),
+  status: teamResponse.students.length >= 3 ? 'active' : 'incomplete',
+  isConfirmed: true
 });
 
 export default function EquiposPage() {
@@ -40,12 +42,6 @@ export default function EquiposPage() {
     projectId: '',
     selectedUsers: [] as string[] // Array de emails de usuarios seleccionados
   });
-
-  useEffect(() => {
-    loadAllTeams();
-    loadProjects();
-    loadUsers();
-  }, [loadAllTeams, loadProjects, loadUsers]);
 
   const loadProjects = useCallback(async () => {
     try {
@@ -89,6 +85,12 @@ export default function EquiposPage() {
       setLoading(false);
     }
   }, [search, selectedCourse, statusFilter, sortBy, setLoading, setError, setTeams, mapTeamResponseToTeam]);
+
+  useEffect(() => {
+    loadAllTeams();
+    loadProjects();
+    loadUsers();
+  }, [loadAllTeams, loadProjects, loadUsers]);
 
   const handleCreateTeam = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -235,7 +237,7 @@ export default function EquiposPage() {
               <div className="ml-3">
                 <p className="text-sm text-red-800">{error}</p>
                 <button
-                  onClick={loadAllTeams}
+                  onClick={() => loadAllTeams()}
                   className="mt-2 text-sm text-red-600 hover:text-red-500 underline"
                 >
                   Intentar nuevamente
@@ -269,7 +271,7 @@ export default function EquiposPage() {
               >
                 <option value="">Todos los cursos</option>
                 {SOFTWARE_ENGINEERING_COURSES.map(c => (
-                  <option key={c.idCourse} value={String(c.idCourse)}>{c.nameCourse}</option>
+                  <option key={c.id} value={String(c.id)}>{c.name}</option>
                 ))}
               </select>
             </div>
@@ -389,14 +391,14 @@ export default function EquiposPage() {
                         )}
                       </div>
                       <p className="mt-1 text-sm text-gray-600">
-                        {SOFTWARE_ENGINEERING_COURSES.find(course => course.idCourse === parseInt(team.courseId))?.nameCourse || 'Descripción no disponible'}
+                        {SOFTWARE_ENGINEERING_COURSES.find(course => course.id === team.courseId)?.name || 'Descripción no disponible'}
                       </p>
                       <div className="mt-2 flex items-center space-x-4 text-sm text-gray-500">
                         <span className="flex items-center">
                           <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                           </svg>
-                          {SOFTWARE_ENGINEERING_COURSES.find(course => course.idCourse === parseInt(team.courseId))?.nameCourse || 'Curso no encontrado'}
+                          {SOFTWARE_ENGINEERING_COURSES.find(course => course.id === team.courseId)?.name || 'Curso no encontrado'}
                         </span>
                         <span className="flex items-center">
                           <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
