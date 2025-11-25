@@ -12,7 +12,7 @@ import { UsersService } from '@/services/users';
 const mapTeamResponseToTeam = (teamResponse: TeamShowDto): Team => ({
   id: teamResponse.idTeam.toString(),
   name: teamResponse.nameTeam,
-  courseId: teamResponse.courseId.toString(),
+  courseId: teamResponse.courseId,
   creatorId: teamResponse.students[0]?.email || '',
   projectId: teamResponse.projectId.toString(), // Incluir projectId para edición
   createdAt: new Date(), // Fecha por defecto (el backend no proporciona esta información)
@@ -255,7 +255,7 @@ export default function EquiposPage() {
               <input
                 type="text"
                 value={search}
-                onChange={(e) => { setSearch(e.target.value); loadAllTeams({ search: e.target.value }); }}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Buscar por nombre de equipo..."
                 className="mt-1 w-full px-3 py-2 border rounded-md"
               />
