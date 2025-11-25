@@ -82,7 +82,7 @@ export default function RegisterForm() {
       // Limpiar el formulario
       setFormData({ nameUser: '', email: '', password: '', confirmPassword: '' });
       
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error en el registro:', error);
       
       let errorMessage = 'Error en el registro. Intente nuevamente.';

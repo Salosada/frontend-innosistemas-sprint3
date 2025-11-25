@@ -17,7 +17,7 @@ export class ApiClient {
     const url = `${API_CONFIG.BASE_URL}${endpoint}`;
     
     // Adjuntar Authorization si existe cookie 'auth_token' en entorno cliente
-    let authHeaders: Record<string, string> = {};
+    const authHeaders: Record<string, string> = {};
     try {
       if (typeof document !== 'undefined') {
         const token = document.cookie
@@ -29,7 +29,7 @@ export class ApiClient {
     } catch {}
 
     const config: RequestInit = {
-      headers: { ...API_CONFIG.HEADERS, ...(options.headers as any), ...authHeaders },
+      headers: { ...API_CONFIG.HEADERS, ...options.headers, ...authHeaders },
       ...options,
     };
 

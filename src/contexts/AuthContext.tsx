@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { UserInfo, AuthContextType, LoginRequest, TokenResponse } from '@/types';
 import { AuthService } from '@/services/auth';
 import { setCookie, deleteCookie, getCookie } from '@/utils/cookies';
@@ -20,7 +20,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     if (user?.email) {
       AuthService.logout(user.email).catch(console.error);
     }
@@ -30,7 +30,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     deleteCookie('auth_token');
     deleteCookie('refresh_token');
     deleteCookie('user_info');
-  };
+  }, [user?.email]);
 
   useEffect(() => {
     const storedToken = getCookie('auth_token');
@@ -51,7 +51,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     }
     setIsLoading(false);
-  }, []);
+  }, [logout]);
 
   const login = async (credentials: LoginRequest): Promise<void> => {
     try {
