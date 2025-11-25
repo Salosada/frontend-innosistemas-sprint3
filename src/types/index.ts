@@ -248,9 +248,15 @@ export interface Student {
 
 export interface Notification {
   id: string;
+  userId: string;
+  type: string;
+  title: string;
   message: string;
   read: boolean;
   createdAt?: Date;
+  teamId?: string;
+  courseId?: string;
+  actionRequired?: boolean;
 }
 
 export interface Team {
