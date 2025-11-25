@@ -63,7 +63,7 @@ export default function CursosPage() {
         {/* Grid de cursos */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCourses.map((course) => (
-            <div key={course.idCourse} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div course.id className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
@@ -79,11 +79,11 @@ export default function CursosPage() {
                 </div>
 
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {course.nameCourse}
+                  {course.name}
                 </h3>
                 
                 <p className="text-gray-600 text-sm mb-4">
-                  Curso de {course.nameCourse} - Semestre {course.semester}
+                  Curso de {course.name} - Semestre {course.semester}
                 </p>
 
                 <div className="space-y-2 text-sm text-gray-500 mb-4">
@@ -103,13 +103,13 @@ export default function CursosPage() {
 
                 <div className="flex space-x-2">
                   <Link
-                    href={`/cursos/${course.idCourse}/equipos`}
+                    href={`/cursos/${course.id}/equipos`}
                     className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-center py-2 px-4 rounded-lg font-medium transition-colors"
                   >
                     Ver Equipos
                   </Link>
                   <Link
-                    href={`/cursos/${course.idCourse}`}
+                    href={`/cursos/${course.id}`}
                     className="flex-1 border border-blue-600 text-blue-600 hover:bg-blue-50 text-center py-2 px-4 rounded-lg font-medium transition-colors"
                   >
                     Detalles
