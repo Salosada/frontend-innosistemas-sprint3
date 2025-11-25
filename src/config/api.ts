@@ -1,8 +1,8 @@
 export const API_CONFIG = {
   // Por defecto usar la ruta relativa `/api` para que el frontend pueda llamar a
   // los endpoints definidos en este mismo proyecto (mock/local). Si se define
-  // `NEXT_PUBLIC_API_URL` se usará ese valor (producción / backend real).
-  BASE_URL: process.env.NEXT_PUBLIC_API_URL || '/api',
+  // `NEXT_PUBLIC_API_BASE_URL` se usará ese valor (producción / backend real).
+  BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || '/api',
   TIMEOUT: 10000,
   HEADERS: {
     'Content-Type': 'application/json',
