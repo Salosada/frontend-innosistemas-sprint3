@@ -135,64 +135,88 @@ export const SOFTWARE_ENGINEERING_COURSES = [
     name: "Fundamentos de Programación",
     semester: 1,
     status: true,
-    maxTeamSize: 4,
-    minTeamSize: 1
+    maxTeamSize: 3,
+    minTeamSize: 2,
+    professor: "Dr. Ana García",
+    description: "Introducción a los fundamentos de la programación utilizando Python.",
+    isActive: true
   },
   {
     id: 2,
     name: "Estructuras de Datos",
     semester: 2,
     status: true,
-    maxTeamSize: 4,
-    minTeamSize: 1
+    maxTeamSize: 3,
+    minTeamSize: 2,
+    professor: "Ing. Carlos Ruiz",
+    description: "Estudio de las estructuras de datos fundamentales y su aplicación.",
+    isActive: true
   },
   {
     id: 3,
     name: "Algoritmos y Complejidad",
     semester: 3,
     status: true,
-    maxTeamSize: 4,
-    minTeamSize: 1
+    maxTeamSize: 3,
+    minTeamSize: 2,
+    professor: "Dra. Laura Soto",
+    description: "Análisis y diseño de algoritmos eficientes y teoría de la complejidad.",
+    isActive: true
   },
   {
     id: 4,
     name: "Ingeniería de Software I",
     semester: 4,
     status: true,
-    maxTeamSize: 4,
-    minTeamSize: 1
+    maxTeamSize: 3,
+    minTeamSize: 2,
+    professor: "MSc. Pablo Jiménez",
+    description: "Principios y prácticas para el desarrollo de software de calidad.",
+    isActive: true
   },
   {
     id: 5,
     name: "Bases de Datos",
     semester: 4,
     status: true,
-    maxTeamSize: 4,
-    minTeamSize: 1
+    maxTeamSize: 3,
+    minTeamSize: 2,
+    professor: "Dr. Sofía Castro",
+    description: "Diseño, implementación y gestión de sistemas de bases de datos relacionales.",
+    isActive: true
   },
   {
     id: 6,
     name: "Ingeniería de Software II",
     semester: 5,
     status: true,
-    maxTeamSize: 4,
-    minTeamSize: 1
+    maxTeamSize: 3,
+    minTeamSize: 2,
+    professor: "Ing. Roberto Vega",
+    description: "Continuación de Ingeniería de Software I, enfocada en patrones de diseño y arquitecturas.",
+    isActive: true
   },
   {
     id: 7,
     name: "Arquitectura de Software",
     semester: 6,
     status: true,
-    maxTeamSize: 4,
-    minTeamSize: 1
+    maxTeamSize: 3,
+    minTeamSize: 2,
+    professor: "Dra. Carmen Díaz",
+    description: "Estudio de los estilos arquitectónicos y su aplicación en el desarrollo de sistemas complejos.",
+    isActive: true
   },
   {
     id: 8,
     name: "Proyecto de Grado",
     semester: 8,
     status: true,
-    maxTeamSize: 4,
-    minTeamSize: 1
+    maxTeamSize: 3,
+    minTeamSize: 2,
+    professor: "MSc. Javier Morales",
+    description: "Desarrollo de un proyecto de software completo, aplicando los conocimientos adquiridos.",
+    isActive: true
   }
 ] as const;
 
