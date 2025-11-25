@@ -13,14 +13,14 @@ export default function StudentDashboard() {
   const [showCreateTeamModal, setShowCreateTeamModal] = useState(false);
   const [showTeamActionsModal, setShowTeamActionsModal] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
-  const [selectedCourse, setSelectedCourse] = useState<string>('');
+  const [selectedCourse, setSelectedCourse] = useState<number>(0);
 
   // Mock data para el estudiante
   const [myTeams, setMyTeams] = useState<Team[]>([
     {
       id: 'team1',
       name: 'Equipo Alpha',
-      courseId: 'is1',
+      courseId: 1,
       creatorId: 'student1',
       members: [
         {
@@ -28,7 +28,7 @@ export default function StudentDashboard() {
           name: 'Juan Pérez',
           email: 'juan.perez@udea.edu.co',
           role: 'student',
-          courseIds: ['is1'],
+          courseIds: [1],
           skills: ['React', 'Node.js', 'MongoDB'],
           currentTeams: { is1: 'team1' },
           avatar: undefined,
@@ -40,7 +40,7 @@ export default function StudentDashboard() {
           name: 'María García',
           email: 'maria.garcia@udea.edu.co',
           role: 'student',
-          courseIds: ['is1'],
+          courseIds: [1],
           skills: ['Python', 'Django', 'PostgreSQL'],
           currentTeams: { is1: 'team1' },
           avatar: undefined,
@@ -65,7 +65,7 @@ export default function StudentDashboard() {
       read: false,
       createdAt: new Date('2024-01-20T10:30:00'),
       teamId: 'team1',
-      courseId: 'is1'
+      courseId: 1
     },
     {
       id: '2',
@@ -76,9 +76,9 @@ export default function StudentDashboard() {
       read: false,
       createdAt: new Date('2024-01-20T09:00:00'),
       teamId: 'team1',
-      courseId: 'is1'
+      courseId: 1
     }
-  ]);
+  ] as any);
 
   // Filtrar cursos en los que el estudiante está inscrito
   const myCourses = SOFTWARE_ENGINEERING_COURSES.filter(course => 
@@ -185,7 +185,7 @@ export default function StudentDashboard() {
     setMyTeams(prev => prev.filter(team => team.id !== teamId));
   };
 
-  const openCreateTeamModal = (courseId: string) => {
+  const openCreateTeamModal = (courseId: number) => {
     setSelectedCourse(courseId);
     setShowCreateTeamModal(true);
   };
@@ -506,7 +506,7 @@ export default function StudentDashboard() {
           isOpen={showCreateTeamModal}
           onClose={() => {
             setShowCreateTeamModal(false);
-            setSelectedCourse('');
+            setSelectedCourse(0); // Mantener como 0 o un valor numérico que indique "no seleccionado"
           }}
           onCreateTeam={handleCreateTeam}
           courseId={selectedCourse}

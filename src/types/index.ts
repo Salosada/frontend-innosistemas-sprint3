@@ -263,7 +263,7 @@ export interface Notification {
 export interface Team {
   id: string;
   name: string;
-  courseId: string;
+  courseId: number;
   creatorId: string;
   projectId?: string;
   members: Student[];
