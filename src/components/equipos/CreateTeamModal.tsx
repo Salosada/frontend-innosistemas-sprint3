@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { Student, Team, TeamValidation, TeamValidationError } from '@/types';
+import { Student, Team } from '@/types';
 
 interface CreateTeamModalProps {
   isOpen: boolean;
@@ -90,23 +90,23 @@ export default function CreateTeamModal({
   const [selectedMembers, setSelectedMembers] = useState<Student[]>([]);
   const [availableStudents, setAvailableStudents] = useState<Student[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [validation, setValidation] = useState<TeamValidation>({ isValid: true, errors: [], warnings: [] });
+  const [validation, setValidation] = useState<{ isValid: boolean; errors: Array<{ type: string; message: string }>; warnings: string[] }>({ isValid: true, errors: [], warnings: [] });
   const [isCreating, setIsCreating] = useState(false);
 
   // Filtrar estudiantes disponibles para el curso
   useEffect(() => {
     if (isOpen) {
       const students = MOCK_STUDENTS.filter(student => 
-        student.courseIds.includes(courseId) && 
+        student.courseIds?.includes(courseId) && 
         student.id !== user?.id && // Excluir al usuario actual
-        !student.currentTeams[courseId] // Excluir estudiantes ya en equipos
+        !student.currentTeams?.[courseId] // Excluir estudiantes ya en equipos
       );
       setAvailableStudents(students);
     }
   }, [isOpen, courseId, user?.id]);
 
   const validateTeam = useCallback(() => {
-    const errors: TeamValidationError[] = [];
+    const errors: Array<{ type: string; message: string }> = [];
     
     // Validar nombre del equipo
     if (!teamName.trim()) {
@@ -135,11 +135,10 @@ export default function CreateTeamModal({
 
     // Verificar duplicados (aunque no debería pasar por el filtro)
     selectedMembers.forEach(member => {
-      if (member.currentTeams[courseId]) {
+      if (member.currentTeams?.[courseId]) {
         errors.push({
           type: 'already_in_team',
-          message: `${member.name} ya pertenece a otro equipo en este curso`,
-          studentId: member.id
+          message: `${member.name} ya pertenece a otro equipo en este curso`
         });
       }
     });
@@ -189,7 +188,7 @@ export default function CreateTeamModal({
 
       const newTeam: Omit<Team, 'id' | 'createdAt' | 'updatedAt'> = {
         name: teamName.trim(),
-        courseId,
+        courseId: parseInt(courseId, 10),
         creatorId: currentUser.id,
         members: allMembers,
         status: 'forming',
@@ -214,7 +213,7 @@ export default function CreateTeamModal({
   const filteredStudents = availableStudents.filter(student =>
     student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     student.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    student.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()))
+    student.skills?.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
   if (!isOpen) return null;
@@ -285,7 +284,7 @@ export default function CreateTeamModal({
                 <p className="text-sm font-medium text-gray-900">{member.name}</p>
                 <p className="text-xs text-gray-500">{member.email}</p>
                 <div className="flex flex-wrap gap-1 mt-1">
-                  {member.skills.slice(0, 3).map((skill, index) => (
+                  {member.skills?.slice(0, 3).map((skill: string, index: number) => (
                     <span 
                       key={index}
                       className="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800"
@@ -293,9 +292,9 @@ export default function CreateTeamModal({
                       {skill}
                     </span>
                   ))}
-                  {member.skills.length > 3 && (
+                  {(member.skills?.length ?? 0) > 3 && (
                     <span className="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
-                      +{member.skills.length - 3}
+                      +{(member.skills?.length ?? 0) - 3}
                     </span>
                   )}
                 </div>
@@ -350,7 +349,7 @@ export default function CreateTeamModal({
                     <p className="text-sm font-medium text-gray-900">{student.name}</p>
                     <p className="text-xs text-gray-500">{student.email}</p>
                     <div className="flex flex-wrap gap-1 mt-1">
-                      {student.skills.slice(0, 3).map((skill, index) => (
+                      {student.skills?.slice(0, 3).map((skill: string, index: number) => (
                         <span 
                           key={index}
                           className="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800"
@@ -358,9 +357,9 @@ export default function CreateTeamModal({
                           {skill}
                         </span>
                       ))}
-                      {student.skills.length > 3 && (
+                      {(student.skills?.length ?? 0) > 3 && (
                         <span className="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
-                          +{student.skills.length - 3}
+                          +{(student.skills?.length ?? 0) - 3}
                         </span>
                       )}
                     </div>
