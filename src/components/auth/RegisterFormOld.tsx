@@ -9,8 +9,7 @@ export default function RegisterForm() {
     nameUser: '',
     email: '',
     password: '',
-    confirmPassword: '',
-    roleId: 2 // Por defecto, rol de estudiante
+    confirmPassword: ''
   });
   const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [success, setSuccess] = useState<string>('');
@@ -74,13 +73,12 @@ export default function RegisterForm() {
       await AuthService.register({
         nameUser: formData.nameUser.trim(),
         email: formData.email.trim(),
-        password: formData.password,
-        roleId: formData.roleId
+        password: formData.password
       });
 
       setSuccess('Registro exitoso');
       // Limpiar el formulario
-      setFormData({ nameUser: '', email: '', password: '', confirmPassword: '', roleId: 2 });
+      setFormData({ nameUser: '', email: '', password: '', confirmPassword: '' });
       
     } catch (error) {
       console.error('Error en el registro:', error);
@@ -132,23 +130,23 @@ export default function RegisterForm() {
           
           <div className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="nameUser" className="block text-sm font-medium text-gray-700">
                 Nombre completo
               </label>
               <input
-                id="name"
-                name="name"
+                id="nameUser"
+                name="nameUser"
                 type="text"
                 required
                 className={`mt-1 appearance-none relative block w-full px-3 py-2 border ${
-                  errors.name ? 'border-red-300' : 'border-gray-300'
+                  errors.nameUser ? 'border-red-300' : 'border-gray-300'
                 } placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
                 placeholder="Tu nombre"
-                value={formData.name}
+                value={formData.nameUser}
                 onChange={handleChange}
               />
-              {errors.name && (
-                <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+              {errors.nameUser && (
+                <p className="mt-1 text-sm text-red-600">{errors.nameUser}</p>
               )}
             </div>
             <div>
@@ -173,62 +171,6 @@ export default function RegisterForm() {
               )}
             </div>
 
-            <div>
-              <label htmlFor="roleInProject" className="block text-sm font-medium text-gray-700">
-                Rol en los proyectos
-              </label>
-              <input
-                id="roleInProject"
-                name="roleInProject"
-                type="text"
-                required
-                className={`mt-1 appearance-none relative block w-full px-3 py-2 border ${
-                  errors.roleInProject ? 'border-red-300' : 'border-gray-300'
-                } placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
-                placeholder="Ej: Desarrollador, QA, Líder"
-                value={formData.roleInProject}
-                onChange={handleChange}
-              />
-              {errors.roleInProject && (
-                <p className="mt-1 text-sm text-red-600">{errors.roleInProject}</p>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Selecciona tus cursos
-              </label>
-              <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {SOFTWARE_ENGINEERING_COURSES.map((course) => {
-                  const checked = formData.courseIds.includes(course.idCourse.toString());
-                  return (
-                    <label key={course.idCourse} className="inline-flex items-center space-x-2 text-sm text-gray-700">
-                      <input
-                        type="checkbox"
-                        className="h-4 w-4 text-blue-600 border-gray-300 rounded"
-                        checked={checked}
-                        onChange={(e) => {
-                          setFormData((prev) => ({
-                            ...prev,
-                            courseIds: e.target.checked
-                              ? [...prev.courseIds, course.idCourse.toString()]
-                              : prev.courseIds.filter((id) => id !== course.idCourse.toString())
-                          }));
-                          if (errors.courseIds) {
-                            setErrors((prev) => ({ ...prev, courseIds: '' }));
-                          }
-                        }}
-                      />
-                      <span>{course.nameCourse}</span>
-                    </label>
-                  );
-                })}
-              </div>
-              {errors.courseIds && (
-                <p className="mt-1 text-sm text-red-600">{errors.courseIds}</p>
-              )}
-            </div>
-            
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Contraseña
