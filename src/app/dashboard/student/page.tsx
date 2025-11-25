@@ -65,7 +65,7 @@ export default function StudentDashboard() {
       read: false,
       createdAt: new Date('2024-01-20T10:30:00'),
       teamId: 'team1',
-      courseId: 1
+      courseId: '1'
     },
     {
       id: '2',
@@ -76,7 +76,7 @@ export default function StudentDashboard() {
       read: false,
       createdAt: new Date('2024-01-20T09:00:00'),
       teamId: 'team1',
-      courseId: 1
+      courseId: '1'
     }
   ] );
 
