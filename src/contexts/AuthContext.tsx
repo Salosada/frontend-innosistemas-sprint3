@@ -81,6 +81,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         };
         
         const fullUserInfo: UserInfo = {
+          id: userInfo.id || credentials.email,
           email: userInfo.email || credentials.email,
           name: userInfo.name || credentials.email.split('@')[0],
           role: mapRole(userInfo.role) || 'user',
@@ -95,6 +96,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         
         // Fallback: información básica del usuario
         const basicUserInfo: UserInfo = {
+          id: credentials.email,
           email: credentials.email,
           name: credentials.email.split('@')[0],
           role: 'user',
@@ -140,6 +142,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
       // Mantener la información de usuario existente o crear una básica
       const currentUser = user || {
+        id: 'unknown',
         email: 'unknown@example.com',
         name: 'User',
         role: 'user',
