@@ -63,7 +63,7 @@ export default function CursosPage() {
         {/* Grid de cursos */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCourses.map((course) => (
-            <div course.id className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div key={course.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">

@@ -128,8 +128,20 @@ export type AuthResponse = TokenResponse;
 export type LoginPayload = LoginRequest;
 export type RegisterPayload = CreateUserDto;
 
+export interface SoftwareEngineeringCourse {
+  id: number;
+  name: string;
+  semester: number;
+  status: boolean;
+  maxTeamSize: number;
+  minTeamSize: number;
+  professor: string;
+  description: string;
+  isActive: boolean;
+}
+
 // Constantes para cursos de ingeniería de software
-export const SOFTWARE_ENGINEERING_COURSES = [
+export const SOFTWARE_ENGINEERING_COURSES: readonly SoftwareEngineeringCourse[] = [
   {
     id: 1,
     name: "Fundamentos de Programación",
