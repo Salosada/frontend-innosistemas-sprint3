@@ -117,7 +117,7 @@ export default function StudentDashboard() {
         read: false,
         createdAt: new Date(),
         teamId: team.id,
-        courseId: newTeam.courseId,
+        courseId: String(newTeam.courseId),
         actionRequired: true
       }));
 
@@ -149,14 +149,13 @@ export default function StudentDashboard() {
       const newNotifications = remainingMembers.map(member => ({
         id: `notif_${Date.now()}_${member.id}`,
         userId: member.id,
-        type: 'team_removal' as const,
-        title: 'Miembro abandonó el equipo',
-        message: `${user?.name} ha abandonado el equipo "${team.name}"`,
-        read: false,
-        createdAt: new Date(),
-        teamId: team.id,
-        courseId: team.courseId
-      }));
+                    type: 'team_removal' as const,
+                    title: 'Miembro abandonó el equipo',
+                    message: `${user?.name} ha abandonado el equipo "${team.name}"`,
+                    read: false,
+                    createdAt: new Date(),
+                    teamId: team.id,
+                    courseId: String(team.courseId)      }));
 
       console.log('Notificaciones de abandono enviadas:', newNotifications);
       setNotifications(prev => [...prev, ...newNotifications]);
@@ -178,7 +177,7 @@ export default function StudentDashboard() {
           read: false,
           createdAt: new Date(),
           teamId: team.id,
-          courseId: team.courseId
+          courseId: String(team.courseId)
         }));
 
       console.log('Notificaciones de disolución enviadas:', newNotifications);
