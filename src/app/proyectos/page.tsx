@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { TeamsService, CreateTeamRequest } from '@/services/teams';
+import { TeamsService } from '@/services/teams';
+import { CreateTeamForm } from '@/types';
 
 // Lista global de proyectos (esto podría venir también de una API)
 const GLOBAL_PROJECTS = [
@@ -87,21 +88,10 @@ export default function ProyectosPage() {
     const selectedProject = GLOBAL_PROJECTS.find(p => p.id === selectedProjectId);
     if (!selectedProject) return;
 
-    // Convertir emails seleccionados a objetos de estudiante
-    const selectedStudents = selectedMembers.map(email => {
-      const student = AVAILABLE_STUDENTS.find(s => s.email === email);
-      return {
-        email: email,
-        nameUser: student?.name || email
-      };
-    });
-
-    const teamData: CreateTeamRequest = {
+    // Crear el equipo con la información básica requerida
+    const teamData: CreateTeamForm = {
       nameTeam: newTeamName,
-      projectId: selectedProject.id,
-      projectName: selectedProject.name,
-      courseId: 2025, // Podrías hacerlo dinámico
-      students: selectedStudents
+      projectId: selectedProject.id
     };
 
     try {
