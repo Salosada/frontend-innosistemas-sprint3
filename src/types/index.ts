@@ -263,6 +263,7 @@ export interface Team {
   createdAt: Date;
   updatedAt?: Date;
   status: 'forming' | 'active' | 'completed' | 'incomplete';
+  isConfirmed: boolean;
 }
 
 // Tipos para la página de reportes
