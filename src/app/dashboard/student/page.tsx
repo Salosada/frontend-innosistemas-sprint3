@@ -511,7 +511,7 @@ export default function StudentDashboard() {
             setSelectedCourse(0); // Mantener como 0 o un valor numérico que indique "no seleccionado"
           }}
           onCreateTeam={handleCreateTeam}
-          courseId={selectedCourse}
+          courseId={String(selectedCourse)}
           maxTeamSize={SOFTWARE_ENGINEERING_COURSES.find(c => c.id === selectedCourse)?.maxTeamSize || 3}
           minTeamSize={SOFTWARE_ENGINEERING_COURSES.find(c => c.id === selectedCourse)?.minTeamSize || 2}
         />
