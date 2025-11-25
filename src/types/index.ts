@@ -134,49 +134,65 @@ export const SOFTWARE_ENGINEERING_COURSES = [
     id: 1,
     name: "Fundamentos de Programación",
     semester: 1,
-    status: true
+    status: true,
+    maxTeamSize: 4,
+    minTeamSize: 1
   },
   {
     id: 2,
     name: "Estructuras de Datos",
     semester: 2,
-    status: true
+    status: true,
+    maxTeamSize: 4,
+    minTeamSize: 1
   },
   {
     id: 3,
     name: "Algoritmos y Complejidad",
     semester: 3,
-    status: true
+    status: true,
+    maxTeamSize: 4,
+    minTeamSize: 1
   },
   {
     id: 4,
     name: "Ingeniería de Software I",
     semester: 4,
-    status: true
+    status: true,
+    maxTeamSize: 4,
+    minTeamSize: 1
   },
   {
     id: 5,
     name: "Bases de Datos",
     semester: 4,
-    status: true
+    status: true,
+    maxTeamSize: 4,
+    minTeamSize: 1
   },
   {
     id: 6,
     name: "Ingeniería de Software II",
     semester: 5,
-    status: true
+    status: true,
+    maxTeamSize: 4,
+    minTeamSize: 1
   },
   {
     id: 7,
     name: "Arquitectura de Software",
     semester: 6,
-    status: true
+    status: true,
+    maxTeamSize: 4,
+    minTeamSize: 1
   },
   {
     id: 8,
     name: "Proyecto de Grado",
     semester: 8,
-    status: true
+    status: true,
+    maxTeamSize: 4,
+    minTeamSize: 1
   }
 ] as const;
 
