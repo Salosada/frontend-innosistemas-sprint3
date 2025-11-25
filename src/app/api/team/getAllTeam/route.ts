@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import type { TeamShowDto, UserDto } from '@/types';
+import type { TeamShowDto } from '@/types';
 
 const MOCK_TEAMS: TeamShowDto[] = [
   {
@@ -100,7 +100,7 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json(results);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: 'Error interno al obtener equipos' }, { status: 500 });
   }
 }

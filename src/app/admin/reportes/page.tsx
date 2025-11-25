@@ -67,7 +67,7 @@ export default function ReportesPage() {
     setReports(MOCK_TEAM_REPORTS);
   }, [user, isLoading, router]);
 
-  const filteredReports = reports.filter(report => {
+  const filteredReports = reports.filter((report: TeamReport) => {
     const matchesCourse = selectedCourse === 'all' || report.courseName.includes(selectedCourse);
     const matchesStatus = selectedStatus === 'all' || report.status === selectedStatus;
     return matchesCourse && matchesStatus;
@@ -76,11 +76,11 @@ export default function ReportesPage() {
   const getGeneralStats = () => {
     return {
       totalTeams: reports.length,
-      activeTeams: reports.filter(r => r.status === 'active').length,
-      completedTeams: reports.filter(r => r.status === 'completed').length,
-      incompleteTeams: reports.filter(r => r.status === 'incomplete').length,
-      averageProgress: Math.round(reports.reduce((acc, r) => acc + r.projectProgress, 0) / reports.length),
-      totalStudents: reports.reduce((acc, r) => acc + r.memberCount, 0)
+      activeTeams: reports.filter((r: TeamReport) => r.status === 'active').length,
+      completedTeams: reports.filter((r: TeamReport) => r.status === 'completed').length,
+      incompleteTeams: reports.filter((r: TeamReport) => r.status === 'incomplete').length,
+      averageProgress: Math.round(reports.reduce((acc: number, r: TeamReport) => acc + r.projectProgress, 0) / reports.length),
+      totalStudents: reports.reduce((acc: number, r: TeamReport) => acc + r.memberCount, 0)
     };
   };
 

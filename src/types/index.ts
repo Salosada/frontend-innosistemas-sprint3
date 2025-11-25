@@ -42,6 +42,8 @@ export interface UserWithRoleDto {
   email: string;
   nameUser: string;
   role: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface CreateUserDto {
@@ -129,50 +131,50 @@ export type RegisterPayload = CreateUserDto;
 // Constantes para cursos de ingeniería de software
 export const SOFTWARE_ENGINEERING_COURSES = [
   {
-    idCourse: 1,
-    nameCourse: "Fundamentos de Programación",
+    id: 1,
+    name: "Fundamentos de Programación",
     semester: 1,
     status: true
   },
   {
-    idCourse: 2,
-    nameCourse: "Estructuras de Datos",
+    id: 2,
+    name: "Estructuras de Datos",
     semester: 2,
     status: true
   },
   {
-    idCourse: 3,
-    nameCourse: "Algoritmos y Complejidad",
+    id: 3,
+    name: "Algoritmos y Complejidad",
     semester: 3,
     status: true
   },
   {
-    idCourse: 4,
-    nameCourse: "Ingeniería de Software I",
+    id: 4,
+    name: "Ingeniería de Software I",
     semester: 4,
     status: true
   },
   {
-    idCourse: 5,
-    nameCourse: "Bases de Datos",
+    id: 5,
+    name: "Bases de Datos",
     semester: 4,
     status: true
   },
   {
-    idCourse: 6,
-    nameCourse: "Ingeniería de Software II",
+    id: 6,
+    name: "Ingeniería de Software II",
     semester: 5,
     status: true
   },
   {
-    idCourse: 7,
-    nameCourse: "Arquitectura de Software",
+    id: 7,
+    name: "Arquitectura de Software",
     semester: 6,
     status: true
   },
   {
-    idCourse: 8,
-    nameCourse: "Proyecto de Grado",
+    id: 8,
+    name: "Proyecto de Grado",
     semester: 8,
     status: true
   }
@@ -183,6 +185,20 @@ export interface Student {
   id: string;
   name: string;
   email: string;
+  role?: string;
+  courseIds?: (string | number)[];
+  skills?: string[];
+  currentTeams?: Record<string, string>;
+  avatar?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface Notification {
+  id: string;
+  message: string;
+  read: boolean;
+  createdAt?: Date;
 }
 
 export interface Team {
@@ -190,9 +206,11 @@ export interface Team {
   name: string;
   courseId: string;
   creatorId: string;
-  projectId: string;
+  projectId?: string;
   members: Student[];
   createdAt: Date;
+  updatedAt?: Date;
+  status: 'forming' | 'active' | 'completed' | 'incomplete';
 }
 
 // Tipos para la página de reportes

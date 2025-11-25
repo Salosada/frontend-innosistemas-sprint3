@@ -27,7 +27,7 @@ export default function EquiposPage() {
   const params = useParams();
   const courseId = params.id as string;
   
-  const course = SOFTWARE_ENGINEERING_COURSES.find(c => c.id === courseId);
+  const course = SOFTWARE_ENGINEERING_COURSES.find(c => c.id === parseInt(courseId, 10));
 
   // Estado para modal de creación y edición
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -346,7 +346,7 @@ export default function EquiposPage() {
                   
                   <div>
                     <h4 className="text-sm font-medium text-gray-500 mb-3">
-                      Miembros del Equipo ({team.members.length}/{course.maxTeamSize})
+                      Miembros del Equipo ({team.members.length}/4)
                     </h4>
                     
                     {team.members.length > 0 ? (
