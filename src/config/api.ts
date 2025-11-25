@@ -78,7 +78,7 @@ export class ApiClient {
                 errorMessage = `Error ${response.status}: ${response.statusText}`;
             }
           }
-        } catch (_parseError) {
+        } catch (e) {
           // Si no se puede parsear, usar mensaje por defecto según status code
           switch (response.status) {
             case 401:

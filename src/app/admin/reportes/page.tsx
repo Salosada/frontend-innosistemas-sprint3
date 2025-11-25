@@ -4,7 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import NavBar from '@/components/layout/NavBar';
-import { Team, SOFTWARE_ENGINEERING_COURSES, TeamReport } from '@/types';
+import { SOFTWARE_ENGINEERING_COURSES, TeamReport } from '@/types';
 
 // Mock data para reportes
 const MOCK_TEAM_REPORTS: TeamReport[] = [

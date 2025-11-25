@@ -100,7 +100,7 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json(results);
-  } catch (_error) {
+  } catch (error) {
     return NextResponse.json({ error: 'Error interno al obtener equipos' }, { status: 500 });
   }
 }

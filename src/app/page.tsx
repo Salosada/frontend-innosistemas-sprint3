@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import NavBar from "../components/layout/NavBar";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Home() {
-  const { user } = useAuth();
+  const { } = useAuth();
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <NavBar />

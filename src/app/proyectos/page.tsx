@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
-import { TeamsService, TeamResponse, CreateTeamRequest } from '@/services/teams';
+import { TeamsService, CreateTeamRequest } from '@/services/teams';
 
 // Lista global de proyectos (esto podría venir también de una API)
 const GLOBAL_PROJECTS = [

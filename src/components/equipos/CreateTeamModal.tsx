@@ -105,7 +105,7 @@ export default function CreateTeamModal({
     }
   }, [isOpen, courseId, user?.id]);
 
-  const validateTeam = () => {
+  const validateTeam = useCallback(() => {
     const errors: TeamValidationError[] = [];
     
     // Validar nombre del equipo
@@ -149,12 +149,7 @@ export default function CreateTeamModal({
       errors,
       warnings: []
     });
-    setValidation({
-      isValid: errors.length === 0,
-      errors,
-      warnings: []
-    });
-  };
+  }, [teamName, minTeamSize, maxTeamSize, selectedMembers, courseId]);
 
   // Validar el equipo cuando cambie la selección
   useEffect(() => {

@@ -49,16 +49,7 @@ const AVAILABLE_STUDENTS: Student[] = [
   { id: '16', name: 'Andrés Gutierrez', email: 'andres.gutierrez@udea.edu.co', skills: ['C#', '.NET'] }
 ];
 
-const FRONTEND_OPTIONS = [
-  'React + TypeScript',
-  'Vue.js + Nuxt',
-  'Next.js + TypeScript',
-  'Angular',
-  'Svelte',
-  'React Native',
-  'Flutter',
-  'Por definir'
-];
+
 
 export default function EditTeamModal({ 
   team, 

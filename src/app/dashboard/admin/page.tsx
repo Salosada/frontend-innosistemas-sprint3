@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import NavBar from '@/components/layout/NavBar';
-import { SOFTWARE_ENGINEERING_COURSES, Team, Student } from '@/types';
+import { SOFTWARE_ENGINEERING_COURSES } from '@/types';
 
 export default function AdminDashboard() {
   // Placeholder para disolver equipo

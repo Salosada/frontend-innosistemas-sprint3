@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import NavBar from '@/components/layout/NavBar';
@@ -78,7 +78,7 @@ export default function StudentDashboard() {
       teamId: 'team1',
       courseId: 1
     }
-  ] as any);
+  ] );
 
   // Filtrar cursos en los que el estudiante está inscrito
   const myCourses = SOFTWARE_ENGINEERING_COURSES.filter(course => 
@@ -123,6 +123,7 @@ export default function StudentDashboard() {
 
     // En una aplicación real, estas notificaciones se enviarían a través de una API
     console.log('Notificaciones enviadas:', newNotifications);
+    setNotifications(prev => [...prev, ...newNotifications]);
   };
 
   const handleLeaveTeam = (teamId: string, memberId: string) => {
@@ -158,6 +159,7 @@ export default function StudentDashboard() {
       }));
 
       console.log('Notificaciones de abandono enviadas:', newNotifications);
+      setNotifications(prev => [...prev, ...newNotifications]);
     }
   };
 
@@ -180,6 +182,7 @@ export default function StudentDashboard() {
         }));
 
       console.log('Notificaciones de disolución enviadas:', newNotifications);
+      setNotifications(prev => [...prev, ...newNotifications]);
     }
 
     setMyTeams(prev => prev.filter(team => team.id !== teamId));

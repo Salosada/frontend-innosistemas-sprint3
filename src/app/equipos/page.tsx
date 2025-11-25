@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import NavBar from '@/components/layout/NavBar';
-import { Team, Student, SOFTWARE_ENGINEERING_COURSES, TeamShowDto, ProjectDto, UserDto, CreateTeamForm } from '@/types';
+import { Team, SOFTWARE_ENGINEERING_COURSES, TeamShowDto, ProjectDto, UserDto, CreateTeamForm } from '@/types';
 import { TeamsService } from '@/services/teams';
 import { ProjectsService } from '@/services/projects';
 import { UsersService } from '@/services/users';
@@ -45,27 +45,27 @@ export default function EquiposPage() {
     loadAllTeams();
     loadProjects();
     loadUsers();
-  }, []);
+  }, [loadAllTeams, loadProjects, loadUsers]);
 
-  const loadProjects = async () => {
+  const loadProjects = useCallback(async () => {
     try {
       const projectList = await ProjectsService.getAllProjects();
       setProjects(projectList);
     } catch (err) {
       console.error('Error loading projects:', err);
     }
-  };
+  }, []);
 
-  const loadUsers = async () => {
+  const loadUsers = useCallback(async () => {
     try {
       const userList = await UsersService.getAllUsers();
       setUsers(userList);
     } catch (err) {
       console.error('Error loading users:', err);
     }
-  };
+  }, []);
 
-  const loadAllTeams = async (opts?: { search?: string; courseId?: string; status?: string; sort?: string }) => {
+  const loadAllTeams = useCallback(async (opts?: { search?: string; courseId?: string; status?: string; sort?: string }) => {
     setLoading(true);
     setError(null);
 
@@ -88,15 +88,15 @@ export default function EquiposPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [search, selectedCourse, statusFilter, sortBy, setLoading, setError, setTeams, mapTeamResponseToTeam]);
 
   const handleCreateTeam = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     
     try {
-      const selectedProject = projects.find(p => p.id.toString() === formData.projectId);
-      const selectedUsersList = users.filter(user => formData.selectedUsers.includes(user.email));
+      // const selectedProject = projects.find(p => p.id.toString() === formData.projectId);
+      // const selectedUsersList = users.filter(user => formData.selectedUsers.includes(user.email));
       
       if (editingTeam) {
         // Actualizar equipo existente

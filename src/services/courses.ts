@@ -1,5 +1,5 @@
 import { ApiClient } from '@/config/api';
-import type { CourseDto, CreateCourseForm } from '@/types';
+import type { CourseDto } from '@/types';
 
 export class CoursesService {
   static async createCourse(name: string): Promise<CourseDto> {
