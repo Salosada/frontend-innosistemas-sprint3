@@ -194,3 +194,14 @@ export interface Team {
   members: Student[];
   createdAt: Date;
 }
+
+// Tipos para la página de reportes
+export interface TeamReport {
+  teamId: string;
+  teamName: string;
+  courseName: string;
+  memberCount: number;
+  projectProgress: number;
+  lastActivity: Date;
+  status: 'active' | 'completed' | 'incomplete' | 'forming';
+}
