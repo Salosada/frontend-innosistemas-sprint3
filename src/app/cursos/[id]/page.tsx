@@ -9,7 +9,7 @@ export default function CursoDetallePage() {
   const params = useParams();
   const courseId = params.id as string;
   
-  const course = SOFTWARE_ENGINEERING_COURSES.find(c => c.id === courseId);
+  const course = SOFTWARE_ENGINEERING_COURSES.find(c => c.id === parseInt(courseId, 10));
 
   // Datos mock para equipos y proyectos
   const [teams] = useState([
