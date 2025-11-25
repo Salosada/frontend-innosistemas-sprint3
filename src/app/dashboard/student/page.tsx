@@ -395,7 +395,7 @@ export default function StudentDashboard() {
                       <div className="flex items-center space-x-4 text-sm text-gray-500">
                         <span>Creado: {team.createdAt.toLocaleDateString()}</span>
                         <span>•</span>
-                        <span>Última actualización: {team.updatedAt.toLocaleDateString()}</span>
+                        <span>Última actualización: {team.updatedAt?.toLocaleDateString() || 'N/A'}</span>
                       </div>
                     </div>
                   );
@@ -481,7 +481,7 @@ export default function StudentDashboard() {
                           {notification.message}
                         </p>
                         <p className="text-xs text-gray-500 mt-2">
-                          {notification.createdAt.toLocaleString()}
+                          {notification.createdAt?.toLocaleString()}
                         </p>
                       </div>
                     </div>
